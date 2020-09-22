@@ -24,6 +24,9 @@ module.exports = {
   `,
 
   selectById: id => `
-    SELECT * FROM usuarios WHERE id = ${id}
+    SELECT * FROM usuarios
+    INNER JOIN clientes
+    ON usuarios.cliente_id = clientes.id
+    WHERE usuarios.id = ${id}
   `
 }

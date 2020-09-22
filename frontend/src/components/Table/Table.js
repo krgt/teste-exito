@@ -69,7 +69,11 @@ export default function BasicTable() {
     setDialogOpen(false)
   };
 
-  const addRow = newRow => setRows(rows => [...rows, newRow])
+  const addRow = newRow => setRows(rows => {
+    if (rows.length === 0)
+      setColumns(Object.keys(newRow))
+    return rows.concat(newRow)
+  })
 
   return (
     <React.Fragment>
