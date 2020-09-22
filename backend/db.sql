@@ -2,8 +2,6 @@ DROP DATABASE IF EXISTS `teste_exito`;
 CREATE DATABASE `teste_exito`;
 use `teste_exito`;
 
-SET autocommit = OFF;
-
 CREATE TABLE `clientes` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cnpj` CHAR(14) NOT NULL,

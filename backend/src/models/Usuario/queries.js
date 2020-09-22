@@ -21,5 +21,9 @@ module.exports = {
       '${fields.email}',
       '${fields.senha}'
     );
+  `,
+
+  selectById: id => `
+    SELECT * FROM usuarios WHERE id = ${id}
   `
 }

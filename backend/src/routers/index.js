@@ -1,3 +1,3 @@
 module.exports= {
-  clienteRouter: require('./usuario')
+  usuarioRouter: require('./usuario')
 }

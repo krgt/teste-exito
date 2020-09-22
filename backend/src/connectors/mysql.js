@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   ...config.database
 })
 
-const query = (queryString) => new Promise( (resolve, reject) =>
+const query = queryString => new Promise( (resolve, reject) =>
   pool.query(queryString,
     (error, results, fields) => {
       if (error) reject(error)
