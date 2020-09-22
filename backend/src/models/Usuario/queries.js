@@ -5,7 +5,7 @@ module.exports = {
     ON usuarios.cliente_id = clientes.id
   `,
 
-  insertUsuario: fields => `
+  insert: fields => `
     INSERT INTO usuarios (
       cliente_id,
       nome,

@@ -5,14 +5,14 @@ use `teste_exito`;
 CREATE TABLE `clientes` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cnpj` CHAR(14) NOT NULL,
-  `nome_fantasia` VARCHAR(256),
-  `razao_social` VARCHAR(256),
+  `nome_fantasia` VARCHAR(128),
+  `razao_social` VARCHAR(128),
   `cep` CHAR(8),
-  `endereco` VARCHAR(256),
-  `complemento` VARCHAR(256),
-  `bairro` VARCHAR(256),
-  `cidade` VARCHAR(256),
-  `uf` VARCHAR(256),
+  `endereco` VARCHAR(128),
+  `complemento` VARCHAR(128),
+  `bairro` VARCHAR(128),
+  `cidade` VARCHAR(128),
+  `uf` VARCHAR(128),
 
   CONSTRAINT clientes_pk PRIMARY KEY (`id`)
 );
@@ -20,10 +20,10 @@ CREATE TABLE `clientes` (
 CREATE TABLE `usuarios` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `cliente_id` INTEGER UNSIGNED NOT NULL,
-  `nome` VARCHAR(256),
-  `sobrenome` VARCHAR(256),
+  `nome` VARCHAR(128),
+  `sobrenome` VARCHAR(128),
   `telefone` VARCHAR(13),
-  `email` VARCHAR(256),
+  `email` VARCHAR(128),
   `senha` CHAR(60) BINARY, 
 
   CONSTRAINT usuarios_pk

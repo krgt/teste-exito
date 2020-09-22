@@ -1,5 +1,5 @@
 module.exports = {
-  insertCliente: fields => `
+  insert: fields => `
     INSERT INTO clientes (
       cnpj,
       nome_fantasia,

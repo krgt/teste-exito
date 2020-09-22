@@ -2,6 +2,7 @@ const express = require('express')
 const HttpCodes = require('http-status-codes')
 const { Usuario, Cliente } = require('../models')
 const { startTransaction, commit, rollback } = require('../connectors/mysql')
+const { ValidationError } = require('../exceptions')
 
 const router = new express.Router()
 
@@ -17,25 +18,21 @@ router.get('/usuarios', async (req, res) => {
 
 router.post('/usuario', async (req, res) => {
   try {
-    const usuarioRes = await
+    const usuario = await
       startTransaction()
         .then( () => Cliente.create(req.body.cliente) )
-        .then( res => {
-          if (!res || !res.insertId) throw "Erro ao criar cliente."
-          return Usuario.create({ cliente_id: res.insertId, ...req.body.usuario })
-        })
-        .then( res => {
-          if (!res || !res.insertId) throw "Erro ao criar usuario."
-          commit()
-          return res
-        })
-
-    const usuario = await Usuario.findById(usuarioRes.insertId)
+        .then( cliente_id => Usuario.create({ cliente_id, ...req.body.usuario }) )
+        .then( usuario_id => Usuario.findById(usuario_id) )
+    commit()
     res.status(HttpCodes.OK).json(usuario)
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    let response = {}
+    if (err instanceof ValidationError)
+      response.msg = err.message
+    
     rollback()
-    res.status(HttpCodes.BAD_REQUEST).send()
+    console.error(err.message)
+    res.status(HttpCodes.BAD_REQUEST).send(response)
   }
 })
 
