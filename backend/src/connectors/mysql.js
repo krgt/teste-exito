@@ -6,6 +6,21 @@ const pool = mysql.createPool({
   ...config.database
 })
 
+const query = (queryString) => new Promise( (resolve, reject) =>
+  pool.query(queryString,
+    (error, results, fields) => {
+      if (error) reject(error)
+      resolve(results)
+  })
+)
+
+const startTransaction = () => query('START TRANSACTION;')
+const commit = () => query('COMMIT;')
+const rollback = () => query('ROLLBACK;')
+
 module.exports = {
-  pool
+  query,
+  startTransaction,
+  commit,
+  rollback
 }
