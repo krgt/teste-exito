@@ -1,0 +1,6 @@
+{
+  "api": {
+    "usuario": "/usuario",
+    "usuarios": "/usuarios"
+  }
+}

@@ -23,7 +23,7 @@ CREATE TABLE `usuarios` (
   `nome` VARCHAR(128),
   `sobrenome` VARCHAR(128),
   `telefone` VARCHAR(13),
-  `email` VARCHAR(128),
+  `email` VARCHAR(128) UNIQUE,
   `senha` CHAR(60) BINARY, 
 
   CONSTRAINT usuarios_pk
