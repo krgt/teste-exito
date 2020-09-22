@@ -11,27 +11,25 @@ import FormikStep from './FormikStep'
 
 import config from '../../config.json'
 
-const sleep = (time) => new Promise((acc) => setTimeout(acc, time));
-
 const clienteValidationSchema = Yup.object().shape({
-  // cnpj: Yup.string().required()
-  //   .test('cnpj-test', 'CNPJ inválido', value => cnpj.isValid(value)),
-  // nome_fantasia: Yup.string().required(),
-  // razao_social: Yup.string().required(),
-  // cep: Yup.string().min(8).max(8).required(),
-  // endereco: Yup.string().required(),
-  // complemento: Yup.string().required(),
-  // bairro: Yup.string().required(),
-  // cidade: Yup.string().required(),
-  // uf: Yup.string().required(),
+  cnpj: Yup.string().required()
+    .test('cnpj-test', 'CNPJ inválido', value => cnpj.isValid(value)),
+  nome_fantasia: Yup.string().required(),
+  razao_social: Yup.string().required(),
+  cep: Yup.string().min(8).max(8).required(),
+  endereco: Yup.string().required(),
+  complemento: Yup.string().required(),
+  bairro: Yup.string().required(),
+  cidade: Yup.string().required(),
+  uf: Yup.string().required(),
 })
 
 const usuarioValidationSchema = Yup.object().shape({
-  // nome: Yup.string().required(),
-  // sobrenome: Yup.string().required(),
-  // telefone: Yup.string().matches(/^[0-9]{11}/).required(),
-  // email: Yup.string().email().required(),
-  // senha: Yup.string().min(9).required()
+  nome: Yup.string().required(),
+  sobrenome: Yup.string().required(),
+  telefone: Yup.string().matches(/^[0-9]{11}/).required(),
+  email: Yup.string().email().required(),
+  senha: Yup.string().min(9).required()
 })
 
 export default function Form({ closeDialog, addRow }) {

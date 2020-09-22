@@ -49,11 +49,14 @@ export default function BasicTable() {
     fetch(config.api.usuarios)
     .then( res => res.json() )
     .then( res => {
-      setColumns(Object.keys(res[0]))
-      setRows(res)
-      openSuccessSnackbar('Usuários carregados com sucesso.')
+      if (res && res.length > 0) {
+        setColumns(Object.keys(res[0]))
+        setRows(res)
+        openSuccessSnackbar('Usuários carregados com sucesso.')
+      }
     })
     .catch( err => {
+      console.error(err)
       openFailureSnackbar('Erro ao carregar usuários.')
     })
   }, [])
